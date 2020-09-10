@@ -1,0 +1,117 @@
+//TwMS v228.1 ICS 石精靈全屏救援
+
+[Enable]
+Alloc(FullMapRescue_CheckESP, 512)
+Label(FullMapRescue)
+
+FullMapRescue_CheckESP:
+cmp [esp+14],01CCF630
+jne RtlSetLastWin32Error
+mov [esp+14],FullMapRescue
+jmp RtlSetLastWin32Error
+
+FullMapRescue:
+mov ecx,[edi+34]
+mov [ecx+04],al
+mov ecx,00009A65
+mov edi,[edi+34]
+mov al,[edi+04]
+test al,al
+movzx ebx,al
+mov [edi+08],cx
+mov eax,0000002A
+cmove ebx,eax
+mov al,[ebp-14]
+xor al,bl
+mov [edi],al
+add al,2A
+add bl,al
+mov eax,[ebp-18]
+mov esi,[eax+34]
+movzx eax,bl
+movzx ecx,word ptr [esi+08]
+mov dx,cx
+shr dx,0D
+add dx,ax
+lea eax,[ecx*8+00000000]
+mov ecx,0000002A
+or dx,ax
+test bl,bl
+mov [esi+08],dx
+movzx eax,bl
+cmovne ecx,eax
+mov al,[ebp-13]
+xor al,cl
+add cl,2A
+mov [edi+01],al
+lea ebx,[ecx+eax]
+mov eax,[ebp-18]
+mov esi,[eax+34]
+movzx eax,bl
+movzx ecx,word ptr [esi+08]
+mov dx,cx
+shr dx,0D
+add dx,ax
+lea eax,[ecx*8+00000000]
+mov ecx,0000002A
+or dx,ax
+test bl,bl
+mov [esi+08],dx
+movzx eax,bl
+cmovne ecx,eax
+mov al,[ebp-12]
+xor al,cl
+add cl,2A
+mov [edi+02],al
+lea ebx,[ecx+eax]
+mov eax,[ebp-18]
+mov esi,[eax+34]
+movzx eax,bl
+movzx ecx,word ptr [esi+08]
+mov dx,cx
+shr dx,0D
+add dx,ax
+lea eax,[ecx*8+00000000]
+mov ecx,0000002A
+or dx,ax
+movzx eax,bl
+test bl,bl
+mov [esi+08],dx
+cmovne ecx,eax
+mov al,[ebp-11]
+xor al,cl
+add cl,2A
+mov [edi+03],al
+add al,cl
+mov edi,[ebp-18]
+movzx eax,al
+mov esi,[edi+34]
+movzx ecx,word ptr [esi+08]
+mov dx,cx
+shr dx,0D
+add dx,ax
+lea eax,[ecx*8+00000000]
+or dx,ax
+mov [esi+08],dx
+mov ecx,[044E9100]
+mov eax,[ebp+08]
+mov edx,[ebp-7C]
+mov edi,[ebp-70]
+add edi,[ebp-20]
+mov esi,[ebp-74]
+mov ebx,[ebp-78]
+add edx,[ebp-28]
+add esi,[ebp-28]
+add ebx,[ebp-20]
+mov eax,[eax]
+mov [ebp-24],edi
+mov edi,[ebp-18]
+jmp 01CA4542
+
+039FE2EC:
+DD FullMapRescue_CheckESP
+
+[Disable]
+039FE2EC:
+DD RtlSetLastWin32Error
+DeAlloc(FullMapRescue_CheckESP)

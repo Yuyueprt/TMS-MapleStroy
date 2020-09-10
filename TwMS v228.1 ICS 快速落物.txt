@@ -1,0 +1,22 @@
+//TwMS v228.1 ICS 快速落物
+[Enable]
+Alloc(QuickfallHook,32)
+Label(Quickfall)
+
+QuickfallHook:
+cmp [esp+1C],015041C5
+jne VariantClear
+mov [esp+1C],Quickfall
+jmp VariantClear
+
+Quickfall:
+mov eax,[ebp-0000009C]
+cmp eax,02
+jmp 015041D4
+
+039FE460:
+DD QuickfallHook
+
+[Disable]
+039FE460:
+DD VariantClear

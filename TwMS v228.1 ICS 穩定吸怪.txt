@@ -1,0 +1,61 @@
+// TwMS v228.1 ICS 穩定吸怪
+// 怪物吸脚下
+
+[ENABLE]
+Alloc(newmem,512)
+Alloc(jishi,04)
+Label(exit)
+
+newmem:
+cmp [esp+84],01A75D27
+jne RtlSetLastWin32Error
+mov [esp+84],exit
+jmp RtlSetLastWin32Error
+
+exit:
+inc [jishi]
+cmp [jishi],16
+jne 01A75D27
+mov [jishi],00
+pushad
+push 00
+push 00
+push 00
+push 00
+push 64
+push 00
+push 00
+mov eax,[0425217C]
+mov eax,[eax+0000CC4C]
+mov eax,[eax+34]
+mov eax,[eax+5C]
+push eax
+mov eax,[0425217C]
+mov eax,[eax+0000CC4C]
+mov eax,[eax+34]
+mov eax,[eax+58]
+push eax
+push 12
+push 00
+push 00
+push 00
+push 00
+push 00
+push 00
+push 00
+push 00
+push 07
+mov ecx,ebx
+call 01A74570
+popad
+mov ecx,edi
+jmp 01A75D27
+
+039FE2EC:
+DD newmem
+
+[DISABLE]
+039FE2EC:
+DD RtlSetLastWin32Error
+
+DeAlloc(newmem)
