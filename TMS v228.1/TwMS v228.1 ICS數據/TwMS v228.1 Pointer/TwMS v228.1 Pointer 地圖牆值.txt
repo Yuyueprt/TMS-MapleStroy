@@ -1,0 +1,11 @@
+// TwMS v228.1 Pointer 地圖牆值
+Base Address : 0425215C
+
+左牆offset : 0C
+上牆offset : 10
+右牆offset : 14
+下牆offset : 18
+
+
+
+Base Address :// 8b 35 * * * * 81 c1 * * * * 8b * ff * * 6a * 6a * 68 * * * *

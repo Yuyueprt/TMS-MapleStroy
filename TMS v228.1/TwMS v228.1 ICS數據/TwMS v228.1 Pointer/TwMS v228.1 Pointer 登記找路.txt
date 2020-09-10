@@ -1,0 +1,12 @@
+// TwMS v228.1 Pointer 登記找路
+
+Base Address:04251EB8
+
+Status: 00000174
+(On: 1 , Off: 0)
+
+NextMapID: 00000170
+(Default: 999999999) Status -4
+
+TargetMapID: 0000016C
+(Default: 999999999) Status -8

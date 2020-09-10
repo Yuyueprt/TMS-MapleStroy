@@ -1,0 +1,19 @@
+// TwMS v228.1 Pointer Buff相關
+第一個BuffID
+Base : 04251EB8
+Offset1 : 8698
+Offset2 : 28
+Offset3 : 04
+Offset4 : 98
+
+最後一個BuffID
+Base : 04251EB8
+Offset1 : 8698
+Offset2 : 2C
+Offset3 : 04
+Offset4 : 98
+
+當前Buff數量
+Base : 04251EB8
+Offset1 : 8698
+Offset2 : 24

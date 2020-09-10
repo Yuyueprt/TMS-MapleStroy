@@ -1,0 +1,11 @@
+// TwMs v228.1 Pointer 血魔指針
+Base Address : 044F7A9C
+
+HP Offset : [[000019D4]+00000274]
+
+MP Offset : [[000019DC]+00000274]
+
+
+Base Address : //8b 0d * * * * 85 * 74 * 8b * * 83 * * 6a * ff * 8d 85 * * * * c7 85 * * * *  * * * * 57 50 e8 * * * *
+
+offset //89 95 * * * * 8b * e8 * * * * 3b * 75 * 3b 95 * * * * 75 * 51

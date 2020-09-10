@@ -1,0 +1,7 @@
+// TwMs v228.1 Pointer 地上物品數量
+Base Address : 044F7AA0
+
+Offset : 14
+
+
+Base Adderss : 8B 0D * * * * 8D * * 6A * 50 8D * * C7 45 FC * * * * 50 6A * 6A * E8 * * * * 8D * * 6A * 50

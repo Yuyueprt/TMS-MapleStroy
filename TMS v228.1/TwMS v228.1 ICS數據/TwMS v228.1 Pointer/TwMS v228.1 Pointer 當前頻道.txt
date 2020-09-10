@@ -1,0 +1,5 @@
+// TwMS v228.1 Pointer 當前頻道
+// 這個指標顯示的結果為你當前顯示的頻道數-1
+Base Address : 04251EB8
+
+Offset : 00002274
