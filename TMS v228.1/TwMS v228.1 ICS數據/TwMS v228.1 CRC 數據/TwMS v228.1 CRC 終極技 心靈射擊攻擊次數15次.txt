@@ -1,0 +1,24 @@
+// TwMS v228.1 CRC 終極技 心靈射擊攻擊次數15次
+[ENABLE]
+alloc(ShotAttackCount,64)
+label(ShotAttackCount_Back)
+
+ShotAttackCount:
+cmp [esp+294],08789442
+jne ShotAttackCount_Back
+mov eax,f
+jmp ShotAttackCount_Back
+
+ShotAttackCount_Back:
+db 8b 8d 20 ee ff ff
+jmp 02AF6E11+6
+
+02AF6E11:
+jmp ShotAttackCount
+nop
+
+[DISABLE]
+02AF6E11:
+db 8b 8d 20 ee ff ff
+
+dealloc(ShotAttackCount)

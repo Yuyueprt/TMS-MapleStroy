@@ -1,0 +1,17 @@
+// TwMS v228.1 CRC 超級撿物
+[ENABLE]
+alloc(Supercapture,80)
+
+Supercapture:
+mov [esi+000022F8],00
+jmp 02D8FDC9+6
+
+02D8FDC9:
+jmp Supercapture
+nop
+
+[DISABLE]
+02D8FDC9:
+db 89 86 f8 22 00 00
+
+dealloc(Supercapture)

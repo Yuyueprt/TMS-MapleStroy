@@ -1,0 +1,28 @@
+// TwMS v228.1 CRC 取得人物最大MP/當前MP
+[ENABLE]
+Registersymbol(Max_MP)
+Registersymbol(Now_MP)
+Alloc(Max_MP,04)
+Alloc(Now_MP,04)
+Alloc(Hook,64)
+Label(Return)
+
+Hook:
+mov [Max_MP],ESI
+mov [Now_MP],EBX
+call 026AE810
+jmp Return
+
+026AC293:
+jmp Hook
+Return:
+
+[DISABLE]
+026AC293:
+call 026AE810
+
+UnRegistersymbol(Max_MP)
+UnRegistersymbol(Now_MP)
+DeAlloc(Max_MP)
+DeAlloc(Now_MP)
+DeAlloc(Hook)

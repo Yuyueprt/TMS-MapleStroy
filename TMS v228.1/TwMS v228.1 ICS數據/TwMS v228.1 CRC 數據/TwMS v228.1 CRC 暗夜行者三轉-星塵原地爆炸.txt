@@ -1,0 +1,23 @@
+// TwMS v228.1 CRC 暗夜行者三轉-星塵原地爆炸
+// 跟WZ修改星塵的飛行距離原理一樣
+[ENABLE]
+Alloc(Hook,128)
+Label(Return)
+
+Hook:
+push edx
+xor eax,eax
+push eax
+jmp Return
+
+0183D26D:
+jmp Hook
+Return:
+
+[DISABLE]
+0183D26D:
+push edx
+mov eax,[ebp+20]
+push eax
+
+DeAlloc(Hook)

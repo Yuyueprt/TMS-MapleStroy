@@ -1,0 +1,8 @@
+//TwMS v228.1 CRC 怪物跟隨
+[enable]
+01A412B6:
+DB 90 90
+
+[disable]
+01A412B6:
+je 01A412FE

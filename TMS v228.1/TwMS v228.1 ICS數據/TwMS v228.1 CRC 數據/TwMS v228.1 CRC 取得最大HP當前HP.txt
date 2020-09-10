@@ -1,0 +1,31 @@
+// TwMS v228.1 CRC 取得最大HP/當前HP
+[ENABLE]
+Registersymbol(Max_HP)
+Registersymbol(Now_HP)
+Alloc(Max_HP,04)
+Alloc(Now_HP,04)
+Alloc(Hook,64)
+Label(Return)
+
+Hook:
+mov [Max_HP],ebx
+push eax
+mov eax,[ebp-10]
+mov [Now_HP],eax
+pop eax
+call 026AE810
+jmp Return
+
+026ABB80:
+jmp Hook
+Return:
+
+[DISABLE]
+026ABB80:
+call 026AE810
+
+UnRegistersymbol(Max_HP)
+UnRegistersymbol(Now_HP)
+DeAlloc(Max_HP)
+DeAlloc(Now_HP)
+DeAlloc(Hook)

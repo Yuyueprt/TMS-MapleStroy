@@ -1,0 +1,45 @@
+// TwMS v228.1 CRC 自動損血CALL(50毫秒)
+[ENABLE]
+Alloc(Lose_HP,128)
+Label(Return)
+
+Lose_HP:
+push ebp
+mov ebp,esp
+push -01
+pushad
+push 00
+push 00
+push 01
+push 01
+push 00
+push 00
+push 00
+push 00
+push 00
+push FFFFFEC0
+push FFFFFF11
+push 01
+mov ecx,[0425217C]
+call 029B1A40
+popad
+jmp Return
+
+02A2E9A0:
+jmp Lose_HP
+Return:
+
+02DCF3B0:
+mov eax,00000032 //50毫秒
+nop
+
+[DISABLE]
+02A2E9A0:
+push ebp
+mov ebp,esp
+push -01
+
+02DCF3B0:
+db 8D 81 5C 97 00 00
+
+DeAlloc(Lose_HP)

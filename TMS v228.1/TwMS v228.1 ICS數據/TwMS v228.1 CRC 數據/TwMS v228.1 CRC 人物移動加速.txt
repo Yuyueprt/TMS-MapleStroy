@@ -1,0 +1,70 @@
+// TwMS v228.1 CRC 人物移動加速
+[Enable]
+Alloc(CharSpeedUp, 256)
+Alloc(Speed, 04)
+Alloc(FakeTime, 04)
+RegisterSymbol(Speed)
+Label(SpeedChk)
+Label(Return)
+Label(SetFakeTime)
+Label(InitFakeTime)
+
+Speed: // 速度設定
+DD 03
+
+FakeTime:
+DD 00
+
+//-----------------------
+CharSpeedUp:
+push esi
+mov esi,[Speed]
+
+SpeedChk:
+test esi,esi
+je Return
+
+dec esi
+push esi
+push ecx
+call 00B40850
+pop ecx
+pop esi
+jmp SpeedChk
+
+Return:
+pop esi
+jmp 029987C5+5
+
+//-----------------------
+SetFakeTime:
+cmp [FakeTime],00
+je InitFakeTime
+
+mov eax,[FakeTime]
+add eax,000001FE
+
+InitFakeTime:
+mov [FakeTime],eax
+push esi
+jmp 04A81032
+
+//-----------------------
+029987C5:
+jmp CharSpeedUp
+
+04A81029:
+jmp SetFakeTime
+
+//-----------------------
+[Disable]
+029987C5:
+call 00B40850
+
+04A81029:
+DB 56 0F 88 02 00 00 00
+
+DeAlloc(CharSpeedUp)
+DeAlloc(FakeTime)
+DeAlloc(Speed)
+UnRegisterSymbol(Speed)

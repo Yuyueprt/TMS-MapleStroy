@@ -1,0 +1,7 @@
+// TwMS v228.1 CRC 取消怪物死亡動畫
+[Enable]
+01A3D660:
+db c3
+[Disable]
+01A3D660:
+db 55

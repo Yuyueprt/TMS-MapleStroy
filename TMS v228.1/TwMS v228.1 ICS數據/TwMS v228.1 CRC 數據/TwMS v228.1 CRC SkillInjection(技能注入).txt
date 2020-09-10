@@ -1,0 +1,80 @@
+// TwMS v228.1 CRC SkillInjection(技能注入)
+// Update from GMS
+[Enable]
+Alloc(SkillInjection,512)
+Registersymbol(SkillInjectDelay)
+Alloc(SkillInjectDelay,04)
+Registersymbol(SkillInjectMobCount)
+Alloc(SkillInjectMobCount,04)
+Registersymbol(SkillID)
+Alloc(SkillID,4)
+Alloc(Timer,04)
+Label(L1)
+Label(Return)
+
+// 怪物數量
+SkillInjectMobCount:
+DD 02
+
+// 技能編號【請填16進位技能編號】
+SkillID:
+DD 0
+
+// 延遲修改毫秒 (有些技能可無延遲, 有些要加延遲才不會斷線)【請填16進位毫秒】
+SkillInjectDelay:
+DD 0
+
+// 這裡請勿修改
+Timer:
+DD 0
+
+SkillInjection:
+push eax
+mov eax,[044FB438]
+mov eax,[eax+14]
+mov eax,[eax+00019218]
+cmp eax,[SkillInjectMobCount]
+pop eax
+jbe Return
+jmp L1
+
+L1:
+call GetTickCount
+mov ecx,eax
+sub ecx,[Timer]
+cmp ecx,[SkillInjectDelay]
+jl Return
+mov [Timer],eax
+push ecx
+mov ecx,[SkillID]
+mov dword ptr [edi+00017224],ecx
+pop ecx
+
+Return:
+db 83 bf 24 72 01 00 00
+jmp 02ADDDA4+19
+
+02ADDDA4:
+jmp SkillInjection
+db 90 90
+
+02ADDDFD:
+db 3b 87 28 72 01 00 90 E9
+
+02ADDF18:
+jmp 02ADDF18+40
+db 90 90 90 90
+
+[Disable]
+02ADDDA4:
+db 83 bf 24 72 01 00 00
+
+02ADDDFD:
+db 3b 87 28 72 01 00 0f 84
+
+02ADDF18:
+db 0f 87 25 01 00 00
+
+DeAlloc(SkillInjection)
+DeAlloc(SkillInjectDelay)
+DeAlloc(Timer)

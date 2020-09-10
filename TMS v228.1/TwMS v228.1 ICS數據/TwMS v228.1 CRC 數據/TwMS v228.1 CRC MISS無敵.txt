@@ -1,0 +1,8 @@
+// TwMS v228.1 CRC MISS無敵
+[Enable]
+029B2373:
+db 90 E9
+
+[DISABLE]
+029B2373:
+db 0F 84

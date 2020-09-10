@@ -1,0 +1,8 @@
+//TwMS v228.1 CRC 走怪掉落
+[Enable]
+02C2DBAA:
+jmp 02C2DBB0
+
+[Disable]
+02C2DBAA:
+je 02C31BEE

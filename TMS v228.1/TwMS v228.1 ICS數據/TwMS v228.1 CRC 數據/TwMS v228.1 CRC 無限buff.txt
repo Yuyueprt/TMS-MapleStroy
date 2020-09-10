@@ -1,0 +1,24 @@
+// TwMS v228.1 CRC 無限buff
+
+[ENABLE]
+registersymbol(buff)
+alloc(buff,64)
+alloc(Original,64)
+
+02D82560:
+jmp buff
+
+buff:
+cmp  [esp+4],67
+jne Original
+ret 8
+
+
+Original:
+db 55 8b ec 6a ff
+jmp 02D82560+5
+
+[DISABLE]
+02D82560:
+db 55 8b ec 6a ff
+dealloc(buff)

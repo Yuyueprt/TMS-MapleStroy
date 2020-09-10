@@ -1,0 +1,23 @@
+// TwMS v228.1 CRC MobAggro(另類跟怪)
+// Update from GMS
+// 怪物生氣氣 ( 另類跟怪 )
+[ENABLE]
+Alloc(MobAggro, 128)
+
+MobAggro:
+mov eax,[0425217C]
+lea eax,[eax+04]
+mov [ecx+00000530],eax //83 BE ? ? ? ? 00 0F 85 ? ? 00 00 8B CE E8 ? ? ? ? 85 C0 74
+DB 55 8B EC 6A FF
+jmp 02C38CE0+5
+
+02C38CE0:
+jmp MobAggro
+
+[DISABLE]
+02C38CE0:
+DB 55 8B EC 6A FF
+
+
+
+//55 8B EC 6A FF 68 ? ? ? ? 64 A1 00 00 00 00 50 83 EC ? 56 57 A1 ? ? ? ? 33 C5 50 8D ? ? 64 A3 00 00 00 00 8B F9 89 ? ? 8B ? FF

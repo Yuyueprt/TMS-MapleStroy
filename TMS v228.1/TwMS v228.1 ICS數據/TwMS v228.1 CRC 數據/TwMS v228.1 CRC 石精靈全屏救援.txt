@@ -1,0 +1,7 @@
+//TwMS v228.1 CRC 石精靈全屏救援
+[ENABLE]
+01CCF76A:
+jmp 01CCF792
+[DISABLE]
+01CCF76A:
+db 3B D0

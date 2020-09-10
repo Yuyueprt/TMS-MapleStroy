@@ -1,0 +1,16 @@
+//TwMS v228.1 CRC 快速挖礦
+
+
+[ENABLE]
+02A5275E: //74 * 83 * * * * * * 89 * * * * * 7f * 6a * [3/3]
+db 90 90
+
+02A5276D:
+db EB
+
+[Disable]
+02A5275E: //Timestamp
+db 74 36
+
+02A5276D: //Slash-limit
+db 7F

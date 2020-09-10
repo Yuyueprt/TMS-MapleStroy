@@ -1,0 +1,8 @@
+//TwMS v228.1 CRC 快速分解核心(點擊即分解)
+
+[ENABLE]
+0283D1C0:
+db 75
+[DISABLE]
+0283D1C0:
+db 74

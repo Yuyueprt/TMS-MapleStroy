@@ -1,0 +1,8 @@
+// TwMS v228.1 CRC 痛苦定怪
+[Enable]
+01A42D6D:
+jmp 01A4305E
+
+[Disable]
+01A42D6D:
+db 0f 85 5a 02 00 00

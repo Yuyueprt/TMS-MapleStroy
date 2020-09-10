@@ -1,0 +1,57 @@
+// TwMS v228.1 CRC 凱內西斯 擷取心靈不抓怪 + 自動使用心靈射擊(能量夠使用心靈射擊時 只要放猛烈心靈就會自動施放)
+[Enable]
+Alloc(PsychicUltimatePsychicShot,1024)
+Alloc(PsychicGrab_Hook,1024)
+Label(PsychicGrab_Back)
+Label(PsychicUltimatePsychicShot_Back)
+
+//-----不抓怪-----
+PsychicGrab_Hook:
+mov eax,[ebp-64]
+cmp eax,08789440
+jnz PsychicGrab_Back
+xor eax,eax
+inc eax
+
+PsychicGrab_Back:
+mov ecx, ebx
+mov dword ptr[ebp-000000A4], eax
+jmp 02AF356B+8 //below call addr
+
+02AF356B:
+jmp PsychicGrab_Hook
+DB 90 90 90
+
+//-----使用心靈射擊-----
+PsychicUltimatePsychicShot:
+mov eax,[ebp+08]
+mov ecx,eax
+mov ebx,[eax+04]
+cmp ebx, 08789441
+jnz PsychicUltimatePsychicShot_Back
+pushad
+mov eax,[044F7A9C]
+mov eax,[eax+000019DC]
+mov eax,[eax+00000274]
+cmp eax,5
+popad
+jl PsychicUltimatePsychicShot_Back
+mov ebx,08789442
+
+PsychicUltimatePsychicShot_Back:
+jmp 02AF5744+8
+
+02AF5744:
+jmp PsychicUltimatePsychicShot
+
+[Disable]
+//-----使用心靈射擊-----
+02AF5744:
+db 8b 45 08 8b c8
+
+//-----不抓怪-----
+02AF356B:
+db 8b cb 89 85 5c ff ff ff
+
+deAlloc(PsychicGrab_Hook)
+deAlloc(PsychicUltimatePsychicShot)

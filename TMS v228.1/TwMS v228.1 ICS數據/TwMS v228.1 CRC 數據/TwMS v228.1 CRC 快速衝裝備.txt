@@ -1,0 +1,8 @@
+//TwMS v228.1 CRC 快速衝裝備
+[enable]
+01544EF3://快速衝咒文(取消動畫)
+db 0F 85
+
+[disable]
+01544EF3:
+db 0F 84

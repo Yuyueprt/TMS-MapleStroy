@@ -1,0 +1,8 @@
+// TwMS v228.1 CRC 惡魔鐮刀不限時間
+[ENABLE]
+02ADE4F4:
+DB EB 3C
+
+[DISABLE]
+02ADE4F4:
+DB 7C 3C

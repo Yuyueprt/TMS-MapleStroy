@@ -1,0 +1,10 @@
+// TwMs v228.1 CRC 移除一次多殺的特效 (No Multi Kill)
+// Update from GMS
+// 移除一次多殺的特效
+[Enable]
+03C54B58:
+db 00
+
+[Disable]
+03C54B58:
+db 45

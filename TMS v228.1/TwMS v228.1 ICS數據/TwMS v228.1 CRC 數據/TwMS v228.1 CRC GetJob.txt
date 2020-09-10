@@ -1,0 +1,28 @@
+// TwMS v228.1 CRC GetJob
+// 取得職業代碼, 已不需登入或換圖觸發, 數據開啟即可讀取
+[ENABLE]
+Registersymbol(Job)
+Alloc(Newmem,128)
+Alloc(Job,04)
+Label(Return)
+
+Newmem:
+mov ax,[ebp-08]
+mov esp,ebp
+cwde
+mov [Job],eax
+jmp Return
+
+005906B1:
+jmp Newmem
+nop
+Return:
+
+[DISABLE]
+005906B1:
+mov ax,[ebp-08]
+mov esp,ebp
+
+DeAlloc(Newmem)
+Dealloc(Job)
+UnRegistersymbol(Job)

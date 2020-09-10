@@ -1,0 +1,8 @@
+// TwMS v228.1 CRC 只撿楓幣
+[Enable]
+014FB51F:
+DB 0F 84
+
+[Disable]
+014FB51F:
+db 0F 85
