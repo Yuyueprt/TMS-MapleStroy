@@ -1,0 +1,38 @@
+//TwMS v228.1 ICS 火毒技能15下
+
+[Enable]
+Alloc(HuoduICS,128)
+Label(Huodu)
+
+HuoduICS:
+cmp [esp+10],02A085A3
+jne GetLastError
+mov [esp+10],Huodu
+jmp GetLastError
+
+Huodu:
+mov edx,[ebp-00001800]
+lea eax,[edx+eax-00003FFC]
+mov ecx,[ebp-00001800]
+mov [ecx+08],eax
+mov edx,[ebp-00001800]
+mov eax,[edx+04]
+mov ecx,[ebp-00001800]
+mov dl,[ecx]
+mov [eax+05],dl
+mov eax,[ebp-00001800]
+mov ecx,[eax+04]
+mov edx,[ebp-00001800]
+mov al,[edx+08]
+mov [ecx+06],al
+mov ecx,f
+jmp 02A085E8
+
+
+039FE1C4:
+DD HuoduICS
+
+[Disable]
+039FE1C4:
+DD GetLastError
+DeAlloc(HuoduICS)
