@@ -1,9 +1,0 @@
-// TwMS v228.1 CRC 移除大多數技能聲音 (No Skill Sound)
-// 移除大多數技能聲音
-[Enable]
-02B65960:
-db C3
-
-[Disable]
-02B65960:
-db 55

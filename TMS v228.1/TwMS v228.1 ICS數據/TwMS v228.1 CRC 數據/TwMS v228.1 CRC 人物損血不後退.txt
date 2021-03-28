@@ -1,8 +1,0 @@
-// TwMS v228.1 CRC 人物損血不後退
-[ENABLE]
-00A29BC6:
-db B3 01 90
-
-[DISABLE]
-00A29BC6:
-db 0F 9C C3

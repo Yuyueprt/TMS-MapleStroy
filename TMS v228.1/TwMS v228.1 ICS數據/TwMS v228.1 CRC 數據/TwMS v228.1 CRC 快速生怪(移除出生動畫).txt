@@ -1,8 +1,0 @@
-// TwMS v228.1 快速生怪(移除出生動畫)  (No Mob Spawn Animation)
-[Enable]
-01A4E128:
-db 90 90 90 90 90 90
-
-[Disable]
-01A4E128:
-db 0F 8E 08 02 00 00

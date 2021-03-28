@@ -1,4 +1,0 @@
-//TwMS v228.1 Pointer 超級撿物
-Address:04251EB8
-offset:22F8
-//鎖0

@@ -1,8 +1,0 @@
-//TwMS v228.1 CRC 移除衝裝系統成功對話框
-[ENABLE]
-021290B3:
-db EB
-
-[DISABLE]
-021290B3:
-db 77

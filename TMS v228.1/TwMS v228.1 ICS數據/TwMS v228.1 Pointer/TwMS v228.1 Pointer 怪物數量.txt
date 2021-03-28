@@ -1,5 +1,0 @@
-// TwMs v228.1 Pointer 怪物數量
-Base Address : 044FB438
-
-offset : [[14]+19218]
-Base Address : 8B 0D * * * * 50 8B * * 83 * * 50 E8 * * * * 89 * * 85 * 74 * C7 80 * * * * * * * *

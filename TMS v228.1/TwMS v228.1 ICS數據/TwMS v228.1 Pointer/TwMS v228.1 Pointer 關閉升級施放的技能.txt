@@ -1,6 +1,0 @@
-// TwMS v228.1 Pointer 關閉升級施放的技能
-Base Address : 04251EB8
-
-Offset : 00009BB0
-
-0=升級不發動

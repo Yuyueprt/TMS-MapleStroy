@@ -1,7 +1,0 @@
-//TwMS v228.1 Pointer 滑鼠滑鼠動作
-滑鼠動作:[044EA4E8]+974 (按下左鍵時 Value=12)
-
-//TwMS v227.2 Pointer 滑鼠X座標
-X : [[[044EA4E8]+097C]+b0   
-//TwMS v227.2 Pointer 滑鼠Y座標
-Y : [[[044EA4E8]+097C]+b4

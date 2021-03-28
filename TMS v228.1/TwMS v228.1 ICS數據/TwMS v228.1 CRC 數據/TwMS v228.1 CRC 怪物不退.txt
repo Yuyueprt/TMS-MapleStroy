@@ -1,8 +1,0 @@
-//TwMS v228.1 CRC 怪物不退
-[ENABLE]
-01A5F3B0:
-db C2 1C 00
-
-[DISABLE]
-01A5F3B0:
-db 55 8B EC

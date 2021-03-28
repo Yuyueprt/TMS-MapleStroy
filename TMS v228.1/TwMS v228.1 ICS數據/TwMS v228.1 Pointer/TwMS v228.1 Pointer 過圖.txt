@@ -1,5 +1,0 @@
-// TwMS v228.1 Pointer 過圖
-// 1=開
-Base Address : 0425217C
-
-Offset : 0001772C

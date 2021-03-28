@@ -1,8 +1,0 @@
-// TwMS v228.1 CRC 不顯示怪物圖片
-[ENABLE]
-01A42D6D:
-db 0F 84
-
-[DISABLE]
-01A42D6D:
-db 0F 85

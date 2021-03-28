@@ -1,9 +1,0 @@
-// TwMS v228.1 CRC 人物面向控制
-[ENABLE]
-0116E780:
-mov eax,00000001 1左2右
-nop
-
-[DISABLE]
-0116E780:
-db 8b 81 70 06 00 00

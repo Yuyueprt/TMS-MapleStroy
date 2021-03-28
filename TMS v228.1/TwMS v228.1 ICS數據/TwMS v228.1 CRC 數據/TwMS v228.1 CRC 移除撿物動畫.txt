@@ -1,8 +1,0 @@
-// TwMS v228.1 CRC 移除撿物動畫
-[Enable]
-010CD796:
-DB 90 E9
-
-[Disable]
-010CD796:
-DB 0F 8D

@@ -1,8 +1,0 @@
-//TwMS v228.1 CRC 攻擊時視窗不變透明
-[ENABLE]
-02A7E5C0:
-mov eax,00000000
-
-[DISABLE]
-02A7E5C0:
-mov eax,00000001

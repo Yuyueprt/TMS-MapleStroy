@@ -1,7 +1,0 @@
-//TwMS v228.1 CRC 技能不位移
-[ENABLE]
-028757D6:
-mov [esi+04],00000000
-[DISABLE]
-028757D6:
-mov [esi+04],00000001

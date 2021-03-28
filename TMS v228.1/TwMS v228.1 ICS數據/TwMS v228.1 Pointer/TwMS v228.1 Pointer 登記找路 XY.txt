@@ -1,9 +1,0 @@
-// TwMS v228.1 Pointer 登記找路 XY
-
-Base Address : 0425217C
-
-X Offset : 00016774
-(Default: 999999)
-
-Y Offset : 00016778
-(Default: 999999)

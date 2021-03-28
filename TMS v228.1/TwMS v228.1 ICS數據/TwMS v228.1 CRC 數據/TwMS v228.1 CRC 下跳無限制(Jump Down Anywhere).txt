@@ -1,8 +1,0 @@
-//TwMS v228.1 CRC 下跳無限制(Jump Down Anywhere)
-//效果:可以無視地板限制一直往下跳
-[ENABLE]
-02993850:
-DB 90 E9
-[DISABLE]
-02993850:
-DB 74 47

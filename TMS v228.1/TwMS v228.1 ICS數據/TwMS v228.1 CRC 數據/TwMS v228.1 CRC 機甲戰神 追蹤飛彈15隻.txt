@@ -1,8 +1,0 @@
-// TwMS v228.1 CRC 機甲戰神 追蹤飛彈15隻
-[Enable]
-02ADA13D:
-mov eax,F
-
-[Disable]
-02ADA13D:
-call 00626330

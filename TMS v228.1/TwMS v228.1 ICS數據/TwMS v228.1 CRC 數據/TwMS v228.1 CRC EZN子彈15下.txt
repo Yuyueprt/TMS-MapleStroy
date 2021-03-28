@@ -1,7 +1,0 @@
-//TwMS v228.1  CRC  EZN子彈15下
-[ENABLE]
-02AFC4E2:
-mov eax,f
-[DISABLE]
-02AFC4E2:
-call 005F0910

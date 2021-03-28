@@ -1,6 +1,0 @@
-// TwMs v228.1 Pointer MapID
-Base Address : 0425212C
-
-Offset : 0000187C
-
-Base Address : //8B 35 * * * * 85 * 74 * 57 8D BE * * * * 81 C6 * * * *
