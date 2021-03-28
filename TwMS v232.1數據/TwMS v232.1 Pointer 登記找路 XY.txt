@@ -1,0 +1,12 @@
+// TwMS v232.1 Pointer 登記找路XY
+
+Base Address : 04452580
+
+X Offset : 0001124C
+(Default: 999999)
+
+Y Offset : 00011250
+(Default: 999999)
+
+
+//8B B3 * * * * 8D * * 51 8D * * 2B * 8B * * FF * * 8B 8B * * * * 2B * *

@@ -1,0 +1,46 @@
+// TwMS v232.1 CRC 自動損血+延遲調整
+// 解HD任務
+[ENABLE]
+Alloc(Lose_HP,128)
+Label(Return)
+
+Lose_HP:
+push ebp
+mov ebp,esp
+push -01
+pushad
+push 00
+push 00
+push 01
+push 01
+push 00
+push 00
+push 00
+push 00
+push 00
+push FFFFFEC0
+push FFFFFF11
+push 01
+mov ecx,[04452580]
+call 02AED480
+popad
+jmp Return
+
+02B6FD10:
+jmp Lose_HP
+Return:
+
+02F3A680:
+mov eax,00000032 //50毫秒
+nop
+
+[DISABLE]
+02B6FD10:
+push ebp
+mov ebp,esp
+push -01
+
+02F3A680:
+db 8b 81 88 33 00 00
+
+DeAlloc(Lose_HP)

@@ -1,0 +1,32 @@
+// TwMS v232.1 ICS 全職業類無延遲
+[ENABLE]
+Alloc(Newmem,256)
+Alloc(Jici,04)
+Label(Exit)
+Label(Originalcode)
+
+Newmem:
+cmp [esp+54],0298FB8F
+jne MultiByteToWideChar
+mov [esp+54],Exit
+jmp MultiByteToWideChar
+
+Exit:
+cmp [Jici],00000005 // 更改次數修改這裡
+je Originalcode
+add [Jici],00000001
+mov [edi+00000740],0
+jmp 0298FB8F
+
+Originalcode:
+mov [Jici],00
+jmp 0298FB8F
+
+03BA6148:
+DD Newmem
+
+[DISABLE]
+03BA6148:
+DD MultiByteToWideChar
+
+DeAlloc(Newmem)

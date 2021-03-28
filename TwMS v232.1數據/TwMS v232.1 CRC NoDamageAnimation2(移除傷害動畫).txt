@@ -1,0 +1,10 @@
+// TwMS v232.1 CRC NoDamageAnimation2(移除傷害動畫)
+// 移除傷害動畫
+// Update from GMS
+[ENABLE]
+0114BD26:
+db 0f 85
+
+[Disable]
+0114BD26:
+db 0f 84

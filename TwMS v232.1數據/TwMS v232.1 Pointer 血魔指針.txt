@@ -1,0 +1,9 @@
+//TwMS v232.1 Pointer 血魔指針  
+HP: [[046FCDDC]+3B4]+274
+MP: [[046FCDDC]+3BC]+274
+
+
+
+Base Address : //8b 0d * * * * 85 * 74 * 8b * * 83 * * 6a * ff * 8d 85 * * * * c7 85 * * * *  * * * * 57 50 e8 * * * *
+
+offset //

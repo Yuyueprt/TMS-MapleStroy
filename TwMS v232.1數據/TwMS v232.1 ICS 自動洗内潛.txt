@@ -1,0 +1,99 @@
+// TwMS v232.1 ICS 自動洗內潛
+[ENABLE]
+Alloc(AutoResetAbilityICS,512)
+Alloc(AutoResetAbilityDelay,4)
+Alloc(AutoResetAbilityTimer,4)
+Alloc(PotentialGrade,4)
+Label(AutoResetAbility)
+Label(AutoResetAbilityExit)
+Alloc(AutoResetAbilityICS2,512)
+Label(AutoResetAbility2)
+Alloc(AutoResetAbilityICS3,512)
+
+PotentialGrade:
+DD 3
+
+AutoResetAbilityDelay:
+DD 3E8
+
+AutoResetAbilityTimer:
+DD 0
+
+AutoResetAbilityICS:
+cmp [esp],00BD15D6
+jne GetFocus
+mov [esp],AutoResetAbility
+jmp GetFocus
+
+AutoResetAbilityICS2:
+cmp [esp+54C],02FC4420
+jne GetLastError
+mov [esp+54C],AutoResetAbility2
+jmp GetLastError
+
+AutoResetAbilityICS3:
+cmp [esp+3C],02CE923F
+jne RtlAllocateHeap
+mov [esp+3C],02CE940B
+jmp RtlAllocateHeap
+
+AutoResetAbility:
+cmp [04452580],0
+je 00BD15D6
+pushad
+mov ecx,[044522A4]
+call 02F378A0
+cmp eax,[PotentialGrade]
+jge AutoResetAbilityExit
+call 02CC1020
+mov edx,eax
+sub edx,[AutoResetAbilityTimer]
+cmp edx,[AutoResetAbilityDelay]
+jl AutoResetAbilityExit
+mov [AutoResetAbilityTimer],eax
+mov ecx,[044522A4]
+push 00
+push 00
+push 00
+push 00
+call 02FC4260
+jmp AutoResetAbilityExit
+
+AutoResetAbilityExit:
+popad
+jmp 00BD15D6
+
+AutoResetAbility2:
+add esp,08
+mov ecx,esp
+push eax
+mov [ecx],00000000
+call 00487F30
+mov eax,6
+jmp 02FC4420+16
+
+047031C8:
+DD AutoResetAbilityICS
+
+03BA61A8:
+DD AutoResetAbilityICS2
+
+0470300C:
+DD AutoResetAbilityICS3
+
+[DISABLE]
+047031C8:
+DD GetFocus
+
+03BA61A8:
+DD GetLastError
+
+0470300C:
+DD RtlAllocateHeap
+
+DeAlloc(AutoResetAbilityICS)
+DeAlloc(AutoResetAbilityDelay)
+DeAlloc(AutoResetAbilityTimer)
+DeAlloc(PotentialGrade)
+DeAlloc(AutoResetAbilityICS2)
+DeAlloc(AutoResetAbilityICS3)

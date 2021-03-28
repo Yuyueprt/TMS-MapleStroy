@@ -1,0 +1,7 @@
+//TwMS v232.1 CRC 快速分解核心(點擊即分解)
+[ENABLE]
+02947BE0:
+db 75
+[DISABLE]
+02947BE0:
+db 74

@@ -1,0 +1,54 @@
+// TwMS v232.1 ICS 滑鼠移動
+[ENABLE]
+Alloc(Check_ESP,64)
+Alloc(Mouse_Teleport,128)
+Label(Teleport)
+Label(Exit)
+
+Check_ESP:
+cmp [esp+28],016C3C57
+jne GetCursorPos
+nop
+mov [esp+28],Mouse_Teleport
+jmp GetCursorPos
+
+Mouse_Teleport:
+mov esi,[046EF618]
+pushad
+mov eax,[046EF618]
+cmp [eax+00000974],0C
+jne Exit
+mov eax,[eax+0000097C]
+mov edx,[eax+000000B0]
+mov ebx,[eax+000000B4]
+call Teleport
+jmp Exit
+
+Teleport:
+mov esi,[04452580]
+lea ecx,[esi+04]
+mov eax,[esi+04]
+mov eax,[eax+24]
+call eax
+test eax,eax
+je Exit
+push ebx
+push edx
+push 01
+mov ecx,eax
+call 00BA7BE0
+ret
+
+Exit:
+popad
+jmp 016C3C57+6
+
+047031A0:
+DD Check_ESP
+
+[DISABLE]
+047031A0:
+DD GetCursorPos
+
+DeAlloc(Check_ESP)
+DeAlloc(Mouse_Teleport)

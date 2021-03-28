@@ -1,0 +1,70 @@
+// TwMS v232.1 CRC 人物移動加速
+// 速度設定越快越容易斷線
+[Enable]
+Alloc(CharSpeedUp, 256)
+Alloc(Speed, 04)
+Alloc(FakeTime, 04)
+RegisterSymbol(Speed)
+Label(SpeedChk)
+Label(Return)
+Label(SetFakeTime)
+Label(InitFakeTime)
+
+Speed: // 速度設定
+DD 03
+
+FakeTime:
+DD 00
+
+//-----------------------
+CharSpeedUp:
+push esi
+mov esi,[Speed]
+
+SpeedChk:
+test esi,esi
+je Return
+
+dec esi
+push esi
+push ecx
+call 00BA4F90
+pop ecx
+pop esi
+jmp SpeedChk
+
+Return:
+pop esi
+jmp 02AD278A+5
+
+//-----------------------
+SetFakeTime:
+cmp [FakeTime],00
+je InitFakeTime
+
+mov eax,[FakeTime]
+add eax,000001FE
+
+InitFakeTime:
+mov [FakeTime],eax
+jmp 04C96F8A
+
+//-----------------------
+02AD278A:
+jmp CharSpeedUp
+
+04C96F77:
+jmp SetFakeTime
+
+//-----------------------
+[Disable]
+02AD278A:
+call 00BA4F90
+
+04C96F77:
+DB 0F 89 0D 00 00 00
+
+DeAlloc(CharSpeedUp)
+DeAlloc(FakeTime)
+DeAlloc(Speed)
+UnRegisterSymbol(Speed)

@@ -1,0 +1,68 @@
+// TwMS v232.1 CRC 自動洗內潛
+[Enable]
+Alloc(Hook,128)
+Alloc(timer,04)
+Alloc(delay,04)
+Alloc(potentialgrade,04)
+Label(Return)
+Label(Exit)
+Label(ResetAbility)
+
+potentialgrade:
+DD 3 //到達指定等級停止  // 特殊:0 稀有:1 罕見:2 傳說:3
+
+delay:
+DD 0 //執行速度
+
+Hook:
+mov ecx,[044522A4]
+pushad
+call 02F378A0
+cmp eax,[potentialgrade]
+je Exit
+
+call 02CC1020
+mov edx,eax
+sub edx,[timer]
+cmp edx,[delay]
+jl Exit
+mov [timer],eax
+
+ResetAbility:
+mov ecx,[044522A4]
+push 00
+push 00
+push 00
+push 00
+call 02FC4260
+
+Exit:
+popad
+jmp Return
+
+02BD4FE0:
+jmp Hook
+nop
+Return:
+
+02FC4431:
+mov eax,6
+
+02B8A980:
+ret 4
+
+[Disable]
+02BD4FE0:
+mov ecx,[044522A4]
+
+02FC4431:
+call 02CE9420
+
+02B8A980:
+push ebp
+mov ebp,esp
+
+DeAlloc(Hook)
+DeAlloc(timer)
+DeAlloc(delay)
+DeAlloc(potentialgrade

@@ -1,0 +1,8 @@
+// TwMS v232.1 CRC 移除撿物動畫
+[Enable]
+01175881:
+DB 90 E9
+
+[Disable]
+01175881:
+DB 0F 8D

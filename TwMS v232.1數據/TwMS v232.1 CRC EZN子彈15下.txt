@@ -1,0 +1,7 @@
+//TwMS v232.1 CRC EZN子彈15下
+[ENABLE]
+02C57BC1:
+mov eax,f
+[DISABLE]
+02C57BC1:
+call 00616ED0

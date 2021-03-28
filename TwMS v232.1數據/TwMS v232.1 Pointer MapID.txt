@@ -1,0 +1,8 @@
+// TwMS v232.1 Pointer MapID
+Base Address : 04452530
+
+Offset : 0000024C
+
+Base Address : //8B 35 * * * * 85 * 74 * 57 8D BE * * * * 81 C6 * * * *
+
+Offset :  C7 86 * * * * * * * * 8B 8E * * * *  85 * 74 * C7 86 * * * * * * * * 8B * 51 FF * * 8B 8E * * * * 85 * 74 * C7 86 * * * * * * * * 8B * 51 FF  * * 8D 8E * * * * 

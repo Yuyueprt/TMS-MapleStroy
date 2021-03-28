@@ -1,0 +1,8 @@
+//TwMS v232.1 CRC 移除衝裝系統成功對話框
+[ENABLE]
+0225F7AD:
+db EB
+
+[DISABLE]
+0225F7AD:
+db 77

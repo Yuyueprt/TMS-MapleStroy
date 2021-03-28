@@ -1,0 +1,8 @@
+//TwMS v232.1 CRC 走怪掉落
+[Enable]
+02D93DBA:
+DB 0F 85
+
+[Disable]
+02D93DBA:
+DB 0F 84

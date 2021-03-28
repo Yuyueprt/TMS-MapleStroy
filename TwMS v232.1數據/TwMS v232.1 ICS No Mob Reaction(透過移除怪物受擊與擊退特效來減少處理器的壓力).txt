@@ -1,0 +1,27 @@
+// TwMS v232.1 ICS No Mob Reaction(透過移除怪物受擊與擊退特效來減少處理器的壓力)
+[Enable]
+Alloc(main,128)
+Label(Hook)
+
+main:
+cmp [esp],01B484A5
+jne timeGetTime
+mov [esp],Hook
+jmp timeGetTime
+
+Hook:
+mov [edi+00000494],eax
+mov ebx,[ebp+0C]
+jmp 01B49C24
+
+047032FC:
+DD main
+
+[Disable]
+047032FC:
+DD timeGetTime
+
+
+01B484A5//89 87 * * * *  8b * * b8 * * * * 81 fb * * * * 74 *
+
+01B49C24//e8 * * * * c7 45 3c * * * * 83 7d 78 * 74 * 6a * 8d * *  e8 * * * * 8b * * 64 89 0d * * * * 59 5f 5e 5b 8b * 5d

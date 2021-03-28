@@ -1,0 +1,7 @@
+//TwMS v232.1 CRC 快速開卡包(略過動畫)
+[ENABLE]
+00D7057A:
+db 90 E9
+[DISABLE]
+00D7057A:
+db 0f 85

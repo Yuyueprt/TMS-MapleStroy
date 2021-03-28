@@ -1,0 +1,26 @@
+//TwMS v232.1 CRC 全職業類無延遲
+// 一次技能時間施放多次攻擊(請長按)
+[ENABLE]
+alloc(nodelay,128)
+alloc(counter,4)
+alloc(normal,4)
+label(Return)
+
+nodelay:
+cmp [counter],5 //越高越多次
+je normal
+inc [counter]
+jmp Return
+
+normal:
+mov [counter],0
+mov [edi+00000740],eax
+jmp Return
+
+0298F984:
+jmp nodelay
+nop
+Return:
+[DISABLE]
+0298F984:
+mov [edi+00000740],eax

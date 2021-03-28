@@ -1,0 +1,38 @@
+// TwMS v232.1 ICS 移除咒文星力動畫
+[ENABLE]
+Alloc(Hook,256)
+Label(L1)
+Label(Exit)
+
+Hook:
+cmp [esp],02EB25BC
+jne MsgWaitForMultipleObjects
+mov [esp],L1
+jmp MsgWaitForMultipleObjects
+
+L1:
+pushad
+mov eax,[047012C8] //83 3d * * * * * 75 * 83 3d * * * * * c6 * * * 74 * c6 * * * a1 * * * * 85 * 74 * 8b * e8 * * * *  85  * 0f 85 * * * *
+test eax,eax
+je Exit
+mov ebx,[eax+19BC]
+test ebx,ebx
+je Exit
+mov edx,[eax+19C4]
+test edx,edx
+je Exit
+mov [ebx+1924],0
+mov [edx+1968],0
+
+Exit:
+popad
+jmp 02EB25BC
+
+047031D4:
+DD Hook
+
+[DISABLE]
+047031D4:
+DD MsgWaitForMultipleObjects
+
+DeAlloc(Hook)

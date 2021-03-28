@@ -1,0 +1,67 @@
+// TwMS v232.1 CRC 自動洗楓方塊
+//用法 點開楓方塊放上去要洗的裝備,開啟數據,會自動從B(特殊)洗到A(稀有)潛,當開銷>15000(B\特殊潛耗幣上限)自動停止
+[ENABLE]
+Alloc(AutoFun3,8192)
+Alloc(lasttimeB,1024)
+Alloc(Call_FengFangkuai,4096)
+Alloc(lag,1024)
+Label(AutoFun3_End)
+
+lag://間隔
+dd 7d0
+
+lasttimeB:
+dd 0
+
+AutoFun3:
+pushad
+cmp [046EE014],0
+je  AutoFun3_End
+mov eax,[046EE014]
+mov eax,[eax+00000168]
+//eax=楓幣開銷
+cmp eax,FFFFFFFF// no item
+je AutoFun3_End
+cmp eax,0// no item
+je AutoFun3_End
+cmp eax,00003A98// B等 特殊
+jg AutoFun3_End
+call timegettime
+push eax
+call Call_FengFangkuai
+jmp AutoFun3_End
+
+AutoFun3_End:
+popad
+call 02CC1020
+jmp 02AD1934+5
+
+Call_FengFangkuai:
+mov eax,[esp+4]
+mov ebx,eax
+sub eax,[lasttimeB]
+cmp eax,[lag]
+jge +3
+ret 4
+mov [lasttimeB],ebx
+mov ecx,[046EE014]
+call 03460820
+ret 4
+
+02AD1934:
+jmp AutoFun3
+
+03460956:
+db B8 06 00 00 00
+
+[DISABLE]
+02AD1934:
+call 02CC1020
+
+03460956:
+call 02CE9420
+
+DeAlloc(AutoFun3)
+DeAlloc(lasttimeB)
+DeAlloc(Call_FengFangkuai)
+DeAlloc(lag)

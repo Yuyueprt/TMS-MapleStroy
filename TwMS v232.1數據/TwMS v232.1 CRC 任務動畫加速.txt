@@ -1,0 +1,8 @@
+// TwMS v232.1 CRC 任務動畫加速
+[Enable]
+0196A52A:
+DB 90 90
+
+[Disable]
+0196A52A:
+DB 78 71

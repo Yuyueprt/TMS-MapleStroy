@@ -1,0 +1,60 @@
+// TwMS v232.1 CRC 神域護佑(開啟)
+[Enable]
+Alloc(Hook,256)
+Label(L1)
+
+Hook:
+mov eax,[044522A4]
+add eax,00004060
+cmp eax,ecx
+jne L1
+mov [eax+000014CC],857BD983
+mov [eax+000014D0],142BDECC
+mov [eax+000014D4],862A9018
+mov [eax+000014D8],279E5A29
+mov [eax+000014DC],B93C67DC
+mov [eax+000014E0],DE26052D
+
+L1:
+mov eax,[ecx+000014D0]
+jmp 00CE6133+6
+
+00CE6133:
+jmp Hook
+nop
+
+[Disable]
+00CE6133:
+mov eax,[ecx+000014D0]
+
+DeAlloc(Hook)
+
+// TwMS v232.1 CRC 神域護佑(關閉)
+[Enable]
+Alloc(Hook,256)
+Label(L1)
+
+Hook:
+mov eax,[044522A4]
+add eax,00004060
+cmp eax,ecx
+jne L1
+mov [eax+000014CC],32A75FC6
+mov [eax+000014D0],31953AFE
+mov [eax+000014D4],8DD5907C
+mov [eax+000014D8],CBD7F58F
+mov [eax+000014DC],7E5EBFAC
+mov [eax+000014E0],91EA8FD8
+L1:
+mov eax,[ecx+000014D0]
+jmp 00CE6133+6
+
+00CE6133:
+jmp Hook
+nop
+
+[Disable]
+00CE6133:
+mov eax,[ecx+000014D0]
+
+DeAlloc(Hook)

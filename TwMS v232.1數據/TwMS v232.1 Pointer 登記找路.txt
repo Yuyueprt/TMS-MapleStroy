@@ -1,0 +1,12 @@
+// TwMS v232.1 Pointer 登記找路
+
+Base Address : 044522A4
+
+Status: 00000148
+(On: 1 , Off: 0)
+
+NextMapID: 00000144
+(Default: 999999999)
+
+TargetMapID: 00000140
+(Default: 999999999)

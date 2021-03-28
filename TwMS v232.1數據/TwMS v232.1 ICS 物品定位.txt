@@ -1,0 +1,18 @@
+//TwMS v232.1 ICS 物品定位
+//物品還在空中的時候即可撿物品
+[Enable]
+Alloc(FastCaptureHook, 32)
+
+FastCaptureHook:
+cmp [Esp+6D4],01624DC2
+jne GetLastError
+mov [Esp+6D4],01625105
+jmp GetLastError
+
+03BA61A8:
+DD FastCaptureHook
+
+[Disable]
+03BA61A8:
+DD GetLastError
+DeAlloc(FastCaptureHook)

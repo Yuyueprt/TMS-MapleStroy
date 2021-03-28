@@ -1,0 +1,7 @@
+//TwMS v232.1 CRC 狂郎勇士普攻修改
+[Enable]
+02AFD60A:
+push 01406F44 //這一個push後面 可以任意改成其他狂郎的技能ID (16進制)
+[Disable]
+02AFD60A:
+push 01407332

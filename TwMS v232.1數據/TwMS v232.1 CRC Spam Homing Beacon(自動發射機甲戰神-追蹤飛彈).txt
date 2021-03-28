@@ -1,0 +1,22 @@
+// TwMS v232.1 CRC Spam Homing Beacon(自動發射機甲戰神-追蹤飛彈)
+// 用此數據不需搭配追蹤飛彈不需彈按數據
+// 此數據會跟按鍵衝突
+[Enable]
+Alloc(Hook,128)
+Label(Return)
+
+Hook:
+mov [esi+000121AC],0217994A
+db 8B 86 AC 21 01 00
+jmp Return
+
+02C384E9:
+jmp Hook
+nop
+Return:
+
+[Disable]
+02C384E9:
+db 8B 86 AC 21 01 00
+
+DeAlloc(hook)

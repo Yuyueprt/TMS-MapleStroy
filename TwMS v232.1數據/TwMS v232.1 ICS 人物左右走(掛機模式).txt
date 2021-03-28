@@ -1,0 +1,119 @@
+//TwMS v232.1 ICS 人物左右走(掛機模式)
+[ENABLE]
+Alloc(MyAutoLR,1024)
+Alloc(AutoLR_OnOff,4)
+Alloc(AutoLR_OnOffLR,4)
+Alloc(AutoLR_Delay,4)
+Alloc(AutoLR_label_Next,4)
+Globalalloc(AutoLR_Mode,4)
+Globalalloc(AutoLR_Range,4)
+Label(AutoLR_label_Ret)
+Label(AutoLR_label_GoLeft)
+Label(AutoLR_label_GoRight)
+Label(AutoLR_label_Cmp1)
+Label(AutoLR_label_Cmp2)
+Label(AutoLR_label_SetLR)
+Label(AutoLR_label_Back)
+Label(AutoLR_label_Set1)
+Label(AutoLR_label_Set2)
+//-----------------------------------------------
+AutoLR_OnOff:
+DD 1
+AutoLR_Temp:
+DD 0
+AutoLR_Mode:
+DD 2
+AutoLR_Delay:
+DD #3000
+AutoLR_Range:
+DD #10
+
+MyAutoLR:
+ Cmp   [Esp],00BD15D6
+ Jne   GetFocus
+ Add   Esp, 4
+ cmp [AutoLR_Mode],0
+ je 00BD15D6
+ cmp [AutoLR_Mode],2
+ jle AutoLR_label_Back
+ push eax
+ call 02CC1020
+ sub eax,[AutoLR_Delay]
+ cmp eax,[AutoLR_label_Next]
+ pop eax
+ jbe  AutoLR_label_Ret
+ push eax
+ call 02CC1020
+ add eax,[AutoLR_Delay]
+ mov [AutoLR_label_Next],eax
+ pop eax
+ jmp  AutoLR_label_SetLR
+
+AutoLR_label_SetLR:
+ cmp [AutoLR_Mode],3
+ je AutoLR_label_Set2
+ cmp [AutoLR_Mode],4
+ je AutoLR_label_Set1
+
+AutoLR_label_Set1:
+ mov [AutoLR_Mode],1
+ jmp AutoLR_label_Back
+
+AutoLR_label_Set2:
+ mov [AutoLR_Mode],2
+ jmp AutoLR_label_Back
+
+AutoLR_label_Back:
+ cmp [AutoLR_Mode],1
+ je AutoLR_label_Cmp1
+ cmp [AutoLR_Mode],2
+ je AutoLR_label_Cmp2
+ jmp AutoLR_label_Ret
+
+AutoLR_label_Cmp1:
+ add [AutoLR_Temp],1
+ push eax
+ mov eax, [AutoLR_Range]
+ cmp [AutoLR_Temp],eax
+ pop eax
+ jle AutoLR_label_GoLeft
+ mov [AutoLR_Mode],3
+ mov [AutoLR_Temp],0
+ jmp AutoLR_label_GoRight
+
+AutoLR_label_Cmp2:
+ add [AutoLR_Temp],1
+ push eax
+ mov eax, [AutoLR_Range]
+ cmp [AutoLR_Temp],eax
+ pop eax
+ jle AutoLR_label_GoRight
+ mov [AutoLR_Mode],4
+ mov [AutoLR_Temp],0
+ jmp AutoLR_label_GoLeft
+
+AutoLR_label_GoLeft:
+ Mov   [Ebp-18], FFFFFFFF
+ Jmp   AutoLR_label_Ret
+
+AutoLR_label_GoRight:
+ Mov   [Ebp-18], 00000001
+ Jmp   AutoLR_label_Ret
+
+AutoLR_label_Ret:
+ Jmp   00BD1698
+
+047031C8:
+DD MyAutoLR
+
+[DISABLE]
+047031C8:
+DD GetFocus
+
+dealloc(MyAutoLR)
+dealloc(AutoLR_OnOff)
+dealloc(AutoLR_Temp)
+dealloc(AutoLR_Delay)
+dealloc(AutoLR_label_Next)
+unregistersymbol(AutoLR_Mode)
+dealloc(AutoLR_Mode,4)

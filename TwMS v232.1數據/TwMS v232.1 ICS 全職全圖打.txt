@@ -1,0 +1,49 @@
+//TwMS v232.1 ICS 全職業全圖打怪 (物品不落腳下)
+[ENABLE]
+alloc(VariantInit_H,1024)
+alloc(qpgjzctz_SW,4)
+alloc(qpgjzctz,128)
+registersymbol(qpgjzctz_SW)
+label(qpgjzctz_)
+
+qpgjzctz_SW:
+dd 1
+
+VariantInit_H:
+cmp [esp],01B50F10
+je qpgjzctz_
+db 90
+jmp VariantInit
+
+qpgjzctz_:
+cmp [qpgjzctz_SW],0
+je VariantInit
+mov [esp],qpgjzctz
+jmp VariantInit
+
+qpgjzctz:
+mov ecx,[04452580]
+add ecx,04
+lea eax,[ebp-000000A8]
+push eax
+call 029DA340
+push eax
+lea ecx,[ebx+00000564]
+call 00BBBAD0
+jmp 01B50F10
+
+03BA6458:
+DD VariantInit_H
+
+[DISABLE]
+03BA6458:
+dd VariantInit
+
+dealloc(VariantInit_H)
+dealloc(qpgjzctz_SW)
+dealloc(qpgjzctz)
+unregistersymbol(qpgjzctz_SW)
+
+029DA340//55 8B * 56 57 8D B9 * * * * 8D * * E8 * * * * 8B * * 8B *  89 * E8 * * * * 89 * * 8B * 5F 5E 5D C2 * *
+
+00BBBAD0//55 8B * 83 * * 8B * * 53 56 8B 35 * * * * 8B * 8B * 46 89 *  * 89 * * 

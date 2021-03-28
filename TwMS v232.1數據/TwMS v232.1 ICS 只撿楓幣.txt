@@ -1,0 +1,23 @@
+//TwMS v232.1 ICS 只撿楓幣
+[Enable]
+Alloc(MoneyOnly_Check, 32)
+Label(MoneyOnly_Main)
+
+MoneyOnly_Check:
+cmp [Esp+6D4],01624DC2
+jne GetLastError
+mov [Esp+6D4],MoneyOnly_Main
+jmp GetLastError
+
+MoneyOnly_Main:
+test eax,eax
+je 01625680
+jmp 01624DCA
+
+03BA61A8:
+DD MoneyOnly_Check
+
+[Disable]
+03BA61A8:
+DD GetLastError
+DeAlloc(MoneyOnly_Check)

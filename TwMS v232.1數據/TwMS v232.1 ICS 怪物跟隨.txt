@@ -1,0 +1,25 @@
+// TwMS v232.1 ICS 怪物跟隨
+[Enable]
+Alloc(Mob_Follow,128)
+Label(Mob_Follow_Hook)
+
+Mob_Follow:
+cmp [esp+10],01B4ECCE
+jne timeGetTime
+mov [esp+10],Mob_Follow_Hook
+jmp timeGetTime
+
+Mob_Follow_Hook:
+mov ecx,ebx
+call 01BAB0A0
+mov eax,[ebx+00000294]
+jmp 01B4ED13
+
+03BA65D0:
+DD Mob_Follow
+
+[Disable]
+03BA65D0:
+DD timeGetTime
+
+DeAlloc(Mob_Follow)

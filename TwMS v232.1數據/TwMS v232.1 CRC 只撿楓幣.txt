@@ -1,0 +1,8 @@
+// TwMS v232.1 CRC 只撿楓幣
+[Enable]
+01624DC4:
+DB 0F 84
+
+[Disable]
+01624DC4:
+db 0F 85

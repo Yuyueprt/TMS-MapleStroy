@@ -1,0 +1,16 @@
+//TwMS v232.1 ICS 修復後台按鍵
+
+[ENABLE]
+alloc(PressFixICS,64)
+
+PressFixICS:
+cmp [esp+40],02E88A69
+jne GetForegroundWindow
+mov [esp+40],02E88A83
+jmp GetForegroundWindow
+
+04703224:
+DD PressFixICS
+[DISABLE]
+04703224:
+dd GetForegroundWindow

@@ -1,0 +1,80 @@
+// TwMS v232.1 ICS 自動洗楓魔方
+[ENABLE]
+Alloc(AutoFunICS,512)
+Alloc(AutoFunICS2,512)
+Alloc(AutoFunDelay,4)
+Alloc(AutoFunTimer,4)
+Label(AutoFun)
+Label(AutoFun2)
+Label(AutoFunExit)
+
+AutoFunDelay:
+DD 7D0
+
+AutoFunTimer:
+DD 0
+
+AutoFunICS:
+cmp [esp],00BD15D6
+jne GetFocus
+mov [esp],AutoFun
+jmp GetFocus
+
+AutoFunICS2:
+cmp [esp+54C],03460945
+jne GetLastError
+mov [esp+54C],AutoFun2
+jmp GetLastError
+
+AutoFun:
+pushad
+cmp [046EE014],0
+je AutoFunExit
+mov eax,[046EE014]
+mov eax,[eax+00000168]
+cmp eax,FFFFFFFF
+je AutoFunExit
+cmp eax,3A98
+jg AutoFunExit
+call GetTickCount
+mov ecx,eax
+sub ecx,[AutoFunTimer]
+cmp ecx,[AutoFunDelay]
+jl AutoFunExit
+mov [AutoFunTimer],eax
+pushad
+mov ecx,[046EE014]
+call 03460820
+popad
+jmp AutoFunExit
+
+AutoFunExit:
+popad
+jmp 00BD15D6
+
+AutoFun2:
+add esp,0C
+mov ecx,esp
+push eax
+mov [ecx],00000000
+call 00487F30
+mov eax,6
+jmp 03460945+16
+
+047031C8:
+DD AutoFunICS
+
+03BA61A8:
+DD AutoFunICS2
+
+[DISABLE]
+047031C8:
+DD GetFocus
+
+03BA61A8:
+DD GetLastError
+
+DeAlloc(AutoFunICS)
+DeAlloc(AutoFunICS2)
+DeAlloc(AutoFunDelay)
+DeAlloc(AutoFunTimer)

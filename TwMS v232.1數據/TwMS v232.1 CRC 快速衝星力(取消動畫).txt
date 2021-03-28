@@ -1,0 +1,8 @@
+//TwMS v232.1 CRC 快速衝星力(取消動畫)
+[enable]
+0165DD4B://快速衝星力(取消動畫)
+db 0f 85
+
+[disable]
+0165DD4B:
+db 0f 84

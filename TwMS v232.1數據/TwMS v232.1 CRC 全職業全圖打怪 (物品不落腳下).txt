@@ -1,0 +1,24 @@
+//TwMS v232.1 CRC 全職業全圖打怪 (物品不落腳下)
+[ENABLE]
+Alloc(Hook,128)
+
+Hook:
+mov ecx,[04452580]
+add ecx,04
+lea eax,[ebp-000000A8]
+push eax
+call 029DA340
+push eax
+lea ecx,[ebx+00000564]
+call 00BBBAD0
+jmp 01B50EF1+12
+
+01B50EF1:
+jmp Hook
+db 90
+
+[DISABLE]
+01B50EF1:
+lea eax,[ebx+0000054C]
+
+DeAlloc(Hook)

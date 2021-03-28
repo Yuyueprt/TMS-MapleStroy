@@ -1,0 +1,19 @@
+// TwMS v232.1 ICS 怪物變笨
+
+[ENABLE]
+Alloc(StupidMobICS,64)
+
+StupidMobICS:
+cmp [esp+10],02D88B76
+jne GetLastError
+mov [esp+10],02D88CA7
+jmp GetLastError
+
+03BA61A8:
+DD StupidMobICS
+
+[DISABLE]
+03BA61A8:
+DD GetLastError
+
+DeAlloc(StupidMobICS)

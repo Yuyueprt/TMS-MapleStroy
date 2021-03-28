@@ -1,0 +1,69 @@
+// TwMS v232.1 ICS 皇家守護
+[ENABLE]
+Registersymbol(RoyalguardSW)
+Alloc(Royalguardhook,128)
+Alloc(RoyalguardSW,4)
+Label(Royalguard)
+Label(RoyalguardSWon)
+Label(RoyalguardSWoff)
+Label(Royalguardon)
+Label(Royalguardoff)
+
+Royalguardhook:
+cmp [esp],00BD15D6
+jne GetFocus
+mov [esp],Royalguard
+jmp GetFocus
+
+RoyalguardSW:
+DD 01//1=開,0=關
+
+Royalguard:
+cmp [RoyalguardSW],1
+je RoyalguardSWon
+cmp [RoyalguardSW],0
+je RoyalguardSWoff
+jmp 00BD15D6
+
+RoyalguardSWon:
+call Royalguardon
+jmp 00BD15D6
+
+RoyalguardSWoff:
+call Royalguardoff
+jmp 00BD15D6
+
+Royalguardon:
+push eax
+mov eax,[044522A4]
+mov [eax+552C],C691E02A
+mov [eax+552C+4],5E348F01
+mov [eax+552C+8],9A166F82
+mov [eax+552C+C],667F8358
+mov [eax+552C+10],B32BADAF
+mov [eax+552C+14],62124149
+pop eax
+ret
+
+Royalguardoff:
+push eax
+mov eax,[044522A4]
+mov [eax+552C],AECFF36D
+mov [eax+552C+4],6D767F9B
+mov [eax+552C+8],6E198FB6
+mov [eax+552C+C],5D252455
+mov [eax+552C+10],AAE92922
+mov [eax+552C+14],72256FC4
+pop eax
+ret
+
+047031C8:
+DD Royalguardhook
+
+[DISABLE]
+047031C8:
+DD GetFocus
+
+DeAlloc(Royalguardhook)
+DeAlloc(RoyalguardSW)
+UnRegistersymbol(RoyalguardSW)

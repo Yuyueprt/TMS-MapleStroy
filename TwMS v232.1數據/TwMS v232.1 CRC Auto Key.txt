@@ -1,0 +1,47 @@
+// TwMS v232.1 CRC Auto Key
+// 優點:不衝突遊戲按鍵
+//PgUp   01490000
+//PgDown 01510000
+//Insert 01520000
+//Delete 01530000
+//Home   01470000
+//End    014f0000
+//Shift  00360005
+//Ctrl   001D0030
+[Enable]
+Alloc(Hook,128)
+Alloc(PressKey,128)
+Label(Exit)
+
+Hook:
+pushad
+mov eax,[047007F0]
+mov eax,[eax+14]
+mov eax,[eax+19218]
+cmp eax,1
+jb Exit
+mov edx,001D0030
+call PressKey
+
+Exit:
+popad
+call 01AAE560
+jmp 016C39B0+5
+
+PressKey:
+mov esi,[044522A4]
+mov ecx,[esi+A4]
+push edx
+push 00
+call 02E81F90
+ret
+
+016C39B0:
+jmp Hook
+
+[Disable]
+016C39B0:
+call 01AAE560
+
+DeAlloc(Hook)
+DeAlloc(PressKey)

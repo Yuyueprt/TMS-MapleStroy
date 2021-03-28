@@ -1,0 +1,7 @@
+//TwMS v232.1 CRC 攻擊輔助不記次數
+[ENABLE]
+02BF47D1:
+db eb
+[DISABLE]
+02BF47D1:
+db 7e

@@ -1,0 +1,53 @@
+//TwMS v232.1 ICS 移除背景、移除前景、移除地板
+[Enable]
+Alloc(Fun_1_OnOff,4)
+Alloc(Fun_2_OnOff,4)
+Alloc(Fun_3_OnOff,4)
+Alloc(FunHack,1024)
+Label(Fun_1)
+Label(Fun_2)
+Label(Fun_3)
+
+Fun_1_OnOff:
+DD 01
+
+Fun_2_OnOff:
+DD 01
+
+Fun_3_OnOff:
+DD 01
+
+FunHack:
+Cmp [Esp],01ABD331
+je Fun_1
+Cmp [Esp],01AB5B7D
+je Fun_2
+Cmp [Esp],01AB4CBA
+je Fun_3
+jmp VariantClear
+
+Fun_1:
+Cmp [Fun_1_OnOff], 00
+je VariantClear
+Mov [Esp],01ABD4E8
+jmp VariantClear
+
+Fun_2:
+Cmp [Fun_2_OnOff], 00
+je VariantClear
+Mov [Esp],01AB5B9D
+jmp VariantClear
+
+Fun_3:
+Cmp [Fun_3_OnOff], 00
+je VariantClear
+Mov [Esp],01AB4CE3
+jmp VariantClear
+
+03BA6454:
+DD FunHack
+
+[Disable]
+03BA6454:
+DD VariantClear
+DeAlloc(FunHack)

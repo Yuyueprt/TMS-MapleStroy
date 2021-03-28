@@ -1,0 +1,27 @@
+// TwMS v232.1 CRC 配點call
+[ENABLE]
+Registersymbol(Ability)
+Alloc(Ability, 4)
+Alloc(Hook, 128)
+
+Ability:
+DD 80  //力=40  敏=80  智=100  幸=200  血=800  魔=2000
+
+Hook:
+Pushad
+Push 00
+Push [Ability]
+Mov Ecx, [044522A4]
+Call 02F90B30
+Popad
+Jmp GetFocus
+
+047031C8:
+DD Hook
+
+[DISABLE]
+047031C8:
+DD GetFocus
+
+DeAlloc(Hook)
+DeAlloc(Ability)

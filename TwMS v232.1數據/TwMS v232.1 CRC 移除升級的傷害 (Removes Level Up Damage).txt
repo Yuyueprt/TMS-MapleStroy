@@ -1,0 +1,10 @@
+// TwMS v232.1 CRC 移除升級的傷害 (Removes Level Up Damage)
+// Update from GMS
+// 移除升級的傷害
+[ENABLE]
+02FD63B6:
+db EB
+
+[DISABLE]
+02FD63B6:
+db 74

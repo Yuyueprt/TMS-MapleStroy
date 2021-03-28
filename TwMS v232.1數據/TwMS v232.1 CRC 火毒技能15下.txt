@@ -1,0 +1,8 @@
+// TwMS v232.1 CRC 火毒技能15下
+[enable]
+02B48833:
+mov eax,F
+
+[disable]
+02B48833:
+call 00616ED0

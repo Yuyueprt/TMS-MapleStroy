@@ -1,0 +1,7 @@
+// TwMS v232.1 Pointer 傳送點數量
+Base Address : 046EF634
+
+Offset : 1C
+
+
+Base Address 8b 0d * * * * e8 * * * * 8b * 85 * 74 * 8b * e8 * * * * 51
