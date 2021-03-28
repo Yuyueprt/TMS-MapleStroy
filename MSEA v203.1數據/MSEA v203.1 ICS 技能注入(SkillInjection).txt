@@ -1,0 +1,157 @@
+// MSEA v203.1 ICS 技能注入(SkillInjection)
+// 技能ID自行修改，如果是十六進制，請去掉#
+// 技能參數，需要自己測試了。近戰的使用#23即可，我測試了神射和箭神的。
+
+[Enable]
+Alloc(CheckESP,512)
+Label(Skill)
+Alloc(skillid,04)
+Registersymbol(skillid)
+Alloc(SkillInjectionICS,1024)
+Label(SkillInjection)
+Label(hook)
+Label(hook1)
+Alloc(args,04)
+Alloc(Delay,04)
+Alloc(Timer,04)
+Registersymbol(args)
+Label(Exit)
+
+//技能ID
+skillid:
+dd 0        //箭神 火焰衝擊
+
+//技能參數,#23(近戰)，#37(法師)，#46（遠程神射手），#45（遠程箭神）
+args:
+dd 17
+
+Delay:
+DD BB8
+
+Timer:
+DD 0
+
+CheckESP:
+cmp [esp+18],0271BBA2
+jne timeGetTime
+mov [esp+18],Skill
+jmp timeGetTime
+
+Skill:
+push eax
+mov eax,[skillid]
+mov dword ptr [edi+000119DC],eax
+mov eax,[args]
+mov dword ptr [edi+000119E0],eax
+pop eax
+mov dword ptr [edi+000119E4],0
+jmp 0271BBA2
+
+//
+SkillInjectionICS:
+cmp [esp+58],028926C8
+jne GetLastError
+mov [esp+58],SkillInjection
+jmp GetLastError
+
+SkillInjection:
+//怪物小於1不打
+pushad
+mov eax,[03977548]
+mov eax,[eax+14]
+mov eax,[eax+00019218]
+cmp eax,1
+jl Exit
+call GetTickCount
+mov ecx,eax
+sub ecx,[Timer]
+cmp ecx,[Delay]
+jl Exit
+mov [Timer],eax
+
+//紅點不等於2不打
+mov eax,[03979294]
+mov eax,[eax+4]
+cmp eax,2
+popad
+jne 028926C8
+
+test eax,eax
+jne 0289292A
+mov eax,[edi+000000B8]
+push ebx
+lea ebx,[edi+000000B8]
+mov ecx,ebx
+call dword ptr [eax+40]
+push eax
+mov byte ptr [ebp-01],00
+call 00582D10
+add esp,04
+cmp eax,[edi+000119E0]
+jmp hook
+
+hook:
+cmp [edi+000119DC],00423D3E
+jne hook1
+mov eax,[edi]
+mov ecx,edi
+call dword ptr [eax+7C]
+lea edx,[eax-00000960]
+cmp edx,64
+jb hook1
+cmp eax,000007D3
+je hook1
+mov eax,[ebx]
+mov ecx,ebx
+call dword ptr [eax+44]
+push eax
+call 00582D10
+add esp,04
+cmp eax,22
+jne 02892929
+
+hook1:
+mov ecx,[03917D98]
+lea eax,[ebp-08]
+push 01
+push 00
+push 00
+push 00
+push eax
+push [edi+000119DC]
+mov [ebp-08],00000000
+push [ebp-10]
+call 008DC6E0
+mov esi,eax
+test esi,esi
+jng 02892929
+mov ecx,[edi+000119E0]
+add ecx,-17
+cmp ecx,23
+//ja 02892929
+jmp 0289283C
+
+Exit:
+popad
+jmp 028926C8
+
+
+032205D4:
+DD CheckESP
+
+03220140:
+DD SkillInjectionICS
+
+[Disable]
+032205D4:
+DD timeGetTime
+
+03220140:
+DD GetLastError
+
+DeAlloc(SkillInjectionICS)
+DeAlloc(CheckESP)
+DeAlloc(skillid)
+DeAlloc(args)
+UnRegistersymbol(skillid)
+UnRegistersymbol(args)
