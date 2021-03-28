@@ -1,0 +1,29 @@
+//MSEA v203.1 ICS 任務動畫加速
+[Enable]
+Alloc(Animation,64)
+Label(accel)
+
+
+Animation:
+cmp [esp],0167D1A1
+jne timeGetTime
+mov [esp],accel
+jmp timeGetTime
+
+
+accel:
+mov ecx,[esi+04]
+test ecx,ecx
+je 0167D21D
+sub eax,ecx
+jmp 0167D1AC
+
+
+032205D4:
+DD Animation
+
+
+[Disable]
+032205D4:
+DD timeGetTime
+DeAlloc(Animation)
